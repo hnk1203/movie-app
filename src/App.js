@@ -29,29 +29,22 @@ function App() {
       const canAmount = parseFloat(money) / priceUSD;
       return canAmount.toFixed(2); // 살 수 있는 양을 소수점 두 자리까지 표시
     }
-    return "0.00";
+    setToDo("");
+    setToDos((currentArray) => [toDo, ...currentArray]);
   };
-
+  console.log(toDos);
   return (
     <div>
-      <h1>The Coins! {loading ? "" : `(${coins.length})`}</h1>
-      {loading ? (
-        <strong>Loading...</strong>
-      ) : (
-        <div>
-          <input onChange={onChange} type="number" placeholder="소지한 달러" value={money} />
-          <strong> $</strong>
-          <select onChange={onSelectChange}>
-            <option value="">코인 선택</option>
-            {coins.map((coin) => (
-              <option key={coin.id} value={coin.id}>
-                {coin.name} ({coin.symbol}): ${coin.quotes.USD.price} USD
-              </option>
-            ))}
-          </select>
-          <h3>살 수 있는 {selectedCoin.symbol} 의 양: {calcAmount()} {selectedCoin ? selectedCoin.symbol : ""}</h3>
-        </div>
-      )}
+      <h1>my To Dos ({toDos.length})</h1>
+      <form onSubmit={onSubmit}>
+        <input
+          onChange={onChange}
+          value={toDo}
+          type="text"
+          placeholder="write your to do"
+        />
+        <button>Add To Do</button>
+      </form>
     </div>
   );
 }
