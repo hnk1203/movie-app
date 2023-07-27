@@ -49,7 +49,7 @@ function App() {
               </option>
             ))}
           </select>
-          <h3>살 수 있는 {selectedCoin.symbol} 의 양: {calcAmount()} {selectedCoin ? selectedCoin.symbol : ""}</h3>
+          {selectedCoin ? <h3>살 수 있는의 양 : {calcAmount()} {selectedCoin ? selectedCoin.symbol : ""}</h3> : ""}
         </div>
       )}
     </div>
